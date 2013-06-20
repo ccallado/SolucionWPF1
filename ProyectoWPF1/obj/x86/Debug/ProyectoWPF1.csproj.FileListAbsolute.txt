@@ -1,0 +1,33 @@
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\MainWindow.baml
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\App.g.cs
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1_MarkupCompile.cache
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1.g.resources
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1.Properties.Resources.resources
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\bin\Debug\ProyectoWPF1.exe
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\bin\Debug\ProyectoWPF1.pdb
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1.exe
+C:\Users\Formacion\Documents\Visual Studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1.pdb
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1.exe
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1.pdb
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1.csprojResolveAssemblyReference.cache
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\MainWindow.baml
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\MainWindow.g.cs
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\App.g.cs
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1_MarkupCompile.cache
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1.g.resources
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1.Properties.Resources.resources
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1.csproj.GenerateResource.Cache
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\bin\Debug\ProyectoWPF1.exe
+E:\Trastero\Desarrollos\PuntoNet\Curso\Solución WPF 1\ProyectoWPF1\bin\Debug\ProyectoWPF1.pdb
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaInicio.baml
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaInicio.g.cs
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaContenedores.baml
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaContenedores.g.cs
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaHeadered_ItemsControls.baml
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaHeadered_ItemsControls.g.cs
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaRecursos.baml
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaRecursos.g.cs

@@ -1,0 +1,36 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ProyectoWPF1.MainWindow"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button Content="Hola Mundo" Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" x:Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+        <Button Content="Colecciones" Height="23" HorizontalAlignment="Left" Margin="10,39,0,0" x:Name="button2" VerticalAlignment="Top" Width="75" Click="button2_Click" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="91,39,0,0" x:Name="textBox1" VerticalAlignment="Top" Width="120" />
+        <Button Height="148" HorizontalAlignment="Left" Margin="10,68,0,0" x:Name="button3" VerticalAlignment="Top" Width="221" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Click="button3_Click">
+            <StackPanel Margin="10,5">
+                <Image Source="C:\Users\Public\Pictures\Sample Pictures\Koala.jpg" 
+					Width="50"/>
+                <Label Content="Label del botón" HorizontalAlignment="Center" />
+                <TextBlock x:Name="BloqueTexto" Text="Texto del TextBlock" />
+                <TextBox x:Name="CajaBoton" TextChanged="CajaBoton_TextChanged" />
+            </StackPanel>
+        </Button>
+        <CheckBox x:Name="checkBox1" Content="CheckBox" HorizontalAlignment="Left" Margin="260,68,0,0" VerticalAlignment="Top" Checked="checkBox1_Checked" Unchecked="checkBox1_Unchecked">
+            <CheckBox.ToolTip>
+                <StackPanel>
+                    <TextBlock Text="CheckBox" FontWeight="Bold" FontFamily="Arial" FontSize="14" />
+                    <TextBlock Text="Este es para ejecutar o no el botón..."/>
+                </StackPanel>
+            </CheckBox.ToolTip>
+        </CheckBox>
+        <Label Target="{Binding ElementName=TextBox2}" Height="27" 
+               HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="10,236,0,0">_Name
+        </Label>
+        <TextBox Name="TextBox2" Margin="66,237,81,0" Height="26" VerticalAlignment="Top">
+        </TextBox>
+        <ToggleButton Name="TgButton" Height="23" Width="75" Margin="10,269,418,19" Content="Toggle" />
+        <RepeatButton Name="RptButton" Height="23" Width="75" Margin="96,269,332,19" Content="Repeat" />
+        <Button Content="Mensaje" Height="23" HorizontalAlignment="Left" Margin="291,150,0,0" Name="button4" VerticalAlignment="Top" Width="75" />
+    </Grid>
+</Window>

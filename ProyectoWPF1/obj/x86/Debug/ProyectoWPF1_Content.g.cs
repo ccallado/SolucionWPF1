@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("misfotos/foto.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("varios/windows%20ding.wav")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("misfotos/chrysanthemum.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("misfotos/desert.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("misfotos/hydrangeas.jpg")]

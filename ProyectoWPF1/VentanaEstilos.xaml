@@ -1,7 +1,7 @@
 ﻿<Window x:Class="ProyectoWPF1.VentanaEstilos"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="VentanaEstilos" Height="300" Width="300">
+        Title="VentanaEstilos" Height="372" Width="300">
     <Window.Resources>
         <Style x:Key="EstiloBoton1">
             <Setter Property="Button.Foreground" Value="Green"  />
@@ -12,7 +12,7 @@
                BasedOn="{ StaticResource ResourceKey=EstiloBoton1Diccionario}">
             <EventSetter Event="Button.Click" Handler="btnEstilos_Click" />
         </Style>
-        
+
         <!-- Estilo aplicado a un tipo de control sin necesidad de asignarselo -->
         <!--<Style TargetType="Button">
             <Setter Property="Button.Foreground" Value="Green"  />
@@ -20,16 +20,70 @@
             <Setter Property="Background" Value="Orange" />
             <EventSetter Event="Button.Click" Handler="btnEstilos_Click" />
         </Style>-->
-        
+
         <Style x:Key="EstiloTrigger1">
             <Style.Triggers>
                 <Trigger Property="Button.IsMouseOver" Value="True">
                     <Setter Property="Button.FontWeight" Value="Bold" />
+                    <Setter Property="Button.Cursor" Value="Hand" />
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <!-- MultiTrigger cuando pasa el ratón por encima y además tiene el foco -->
+        <Style x:Key="EstiloTrigger2">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Button.IsMouseOver" Value="True" />
+                        <Condition Property="Button.IsFocused" Value="True" />
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Button.FontWeight" Value="ExtraBold"  />
+                        <Setter Property="Button.Cursor" Value="Pen"  />
+                        <Setter Property="Button.FontStyle" Value="Italic" />
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="EstiloTrigger3">
+            <Style.Triggers>
+                <Trigger Property="TextBox.Text" Value="">
+                    <Setter Property="TextBox.Background" Value="BlanchedAlmond"  />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!-- MultiTrigger cuando esté vacía y además tiene el foco 
+             Pondrá en itálica teclee algo -->
+        <Style x:Key="EstiloTrigger4">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <!-- No se puede poner la condición si luego voy a modificarla -->
+                        <!--<Condition Property="TextBox.Text" Value="" />-->
+                        <Condition Property="TextBox.IsMouseOver" Value="True" />
+                        <Condition Property="TextBox.IsFocused" Value="False" />
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="TextBox.Text" Value="&lt;nombre del usuario&gt;"  />
+                        <Setter Property="TextBox.Background" Value="LightGray"  />
+                        <Setter Property="TextBox.Foreground" Value="Gray"  />
+                        <Setter Property="TextBox.FontStyle" Value="Italic" />
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="EstiloTrigger5">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+                    <SoundPlayerAction Source="Varios/Windows Ding.wav" />
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
+
     </Window.Resources>
-    <StackPanel>
+    <StackPanel Height="339">
         <Button Content="Button1" Height="23" Name="button1" Width="75">
             <Button.Style>
                 <Style>
@@ -47,5 +101,15 @@
                 Style="{x:Null}"/>
         <Button Content="Button7" Height="23" Name="button7" />
         <Button Content="Button8" Height="23" Name="button8" Style="{StaticResource EstiloTrigger1}" />
+        <Button Content="Button9" Height="23" Name="button9" Style="{StaticResource EstiloTrigger2}" />
+        <StackPanel Orientation="Horizontal" >
+            <Label Content="Teclee algo:" Height="28" Name="label1" />
+            <TextBox Height="23" Name="textBox1" Width="120" Style="{StaticResource EstiloTrigger3}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" >
+            <Label Content="Teclee algo:" Height="28" Name="label2" />
+            <TextBox Height="23" Name="textBox2" Width="120" Style="{StaticResource EstiloTrigger4}" />
+        </StackPanel>
+        <Button Content="Button10" Height="23" Name="button10" Width="75" Style="{StaticResource EstiloTrigger5}" />
     </StackPanel>
 </Window>

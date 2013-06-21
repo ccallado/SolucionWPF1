@@ -12,6 +12,22 @@
                BasedOn="{ StaticResource ResourceKey=EstiloBoton1Diccionario}">
             <EventSetter Event="Button.Click" Handler="btnEstilos_Click" />
         </Style>
+        
+        <!-- Estilo aplicado a un tipo de control sin necesidad de asignarselo -->
+        <!--<Style TargetType="Button">
+            <Setter Property="Button.Foreground" Value="Green"  />
+            <Setter Property="Button.Width" Value="150" />
+            <Setter Property="Background" Value="Orange" />
+            <EventSetter Event="Button.Click" Handler="btnEstilos_Click" />
+        </Style>-->
+        
+        <Style x:Key="EstiloTrigger1">
+            <Style.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                    <Setter Property="Button.FontWeight" Value="Bold" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <StackPanel>
         <Button Content="Button1" Height="23" Name="button1" Width="75">
@@ -23,6 +39,13 @@
             </Button.Style>
         </Button>
         <Button Content="Button2" Height="23" Name="button2" Style="{StaticResource ResourceKey=EstiloBoton1}"/>
-        <Button Content="Button" Height="23" Name="button3" Width="75" Style="{StaticResource ResourceKey=EstiloBoton1basadoenDiccionario}"/>
+        <Button Content="Button3" Height="23" Name="button3" Width="75" Style="{StaticResource ResourceKey=EstiloBoton1basadoenDiccionario}"/>
+        <Button Content="Button4" Height="23" Name="button4" />
+        <Button Content="Button5" Height="23" Name="button5" Width="75" />
+        <!-- Al asignar el estilo {x:Null} quita el estilo al control -->
+        <Button Content="Button6" Height="23" Name="button6" Width="75" 
+                Style="{x:Null}"/>
+        <Button Content="Button7" Height="23" Name="button7" />
+        <Button Content="Button8" Height="23" Name="button8" Style="{StaticResource EstiloTrigger1}" />
     </StackPanel>
 </Window>

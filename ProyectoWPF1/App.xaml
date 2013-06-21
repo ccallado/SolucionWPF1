@@ -14,6 +14,12 @@
                 <GradientStop Offset="0.45" Color="LightCyan" />
                 <GradientStop Offset="0.5" Color="Cyan" />
             </LinearGradientBrush>
+            <Style TargetType="Button">
+                <Setter Property="Button.Foreground" Value="Green"  />
+                <Setter Property="Button.Width" Value="150" />
+                <Setter Property="Background" Value="Orange" />
+                <!--<EventSetter Event="Button.Click" Handler="btnEstilos_Click" />-->
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -21,6 +21,34 @@ namespace ProyectoWPF1
         public VentanaEstilos()
         {
             InitializeComponent();
+
+            //Creación de un estilo por código dependiente de otro
+            Style estiloSuperior = (Style)this.TryFindResource("EstiloBoton1Diccionario");
+            Style estilo;
+            if (estiloSuperior != null)
+            {
+                //Creación de un estilo por código
+                estilo = new Style(typeof(Button), estiloSuperior );
+                //igual que la anterior (otra forma)
+                // Style estilo = new Style(button1.GetType());
+            }
+            else 
+            {
+                //Creación de un estilo por código
+                estilo = new Style(typeof(Button));
+                //igual que la anterior (otra forma)
+                // Style estilo = new Style(button1.GetType());
+            }
+            //propiedad de dependencia
+            //propiedad con propiedades y metodos
+            //graficamente son practicamente todas
+            //suelen terminar todas en Property
+            Setter s1 = new Setter(Button.FontWeightProperty, FontWeights.Bold);
+            estilo.Setters.Add(s1);
+            //Terminan en Event
+            EventSetter s2 = new EventSetter(Button.ClickEvent, new RoutedEventHandler(btnEstilos_Click));
+            estilo.Setters.Add(s2);
+            button7.Style = estilo;
         }
 
         private void btnEstilos_Click(object sender, RoutedEventArgs e)

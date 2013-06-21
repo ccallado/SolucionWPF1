@@ -31,3 +31,17 @@ C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\Proyect
 C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaHeadered_ItemsControls.g.cs
 C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaRecursos.baml
 C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaRecursos.g.cs
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\bin\Debug\MisFotos\Foto.jpg
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\bin\Debug\MisFotos\Chrysanthemum.jpg
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\bin\Debug\MisFotos\Desert.jpg
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\bin\Debug\MisFotos\Hydrangeas.jpg
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\bin\Debug\MisFotos\Jellyfish.jpg
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\bin\Debug\MisFotos\Koala.jpg
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\bin\Debug\MisFotos\Lighthouse.jpg
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\bin\Debug\MisFotos\Penguins.jpg
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\bin\Debug\MisFotos\Tulips.jpg
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\ProyectoWPF1_Content.g.cs
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\Varios\DiccionarioRecursos.baml
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\App.baml
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaEstilos.baml
+C:\Users\Formacion\documents\visual studio 2010\Projects\Solución WPF 1\ProyectoWPF1\obj\x86\Debug\VentanaEstilos.g.cs

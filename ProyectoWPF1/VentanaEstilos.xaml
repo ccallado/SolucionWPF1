@@ -1,0 +1,28 @@
+﻿<Window x:Class="ProyectoWPF1.VentanaEstilos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="VentanaEstilos" Height="300" Width="300">
+    <Window.Resources>
+        <Style x:Key="EstiloBoton1">
+            <Setter Property="Button.Foreground" Value="Green"  />
+            <Setter Property="Button.Width" Value="100" />
+            <EventSetter Event="Button.Click" Handler="btnEstilos_Click" />
+        </Style>
+        <Style x:Key="EstiloBoton1basadoenDiccionario" TargetType="Button" 
+               BasedOn="{ StaticResource ResourceKey=EstiloBoton1Diccionario}">
+            <EventSetter Event="Button.Click" Handler="btnEstilos_Click" />
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Button Content="Button1" Height="23" Name="button1" Width="75">
+            <Button.Style>
+                <Style>
+                    <Setter Property="Button.Foreground" Value="Blue" />
+                    <EventSetter Event="Button.Click" Handler="btnEstilos_Click" />
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Content="Button2" Height="23" Name="button2" Style="{StaticResource ResourceKey=EstiloBoton1}"/>
+        <Button Content="Button" Height="23" Name="button3" Width="75" Style="{StaticResource ResourceKey=EstiloBoton1basadoenDiccionario}"/>
+    </StackPanel>
+</Window>

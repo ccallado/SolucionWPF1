@@ -3,6 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="VentanaInicio.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Varios/DiccionarioRecursos.xaml" />
+                <!--<ResourceDictionary Source="Varios/DiccionarioRecursos.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
+            <LinearGradientBrush x:Key="BrochaAppCyan"
+            StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="LightCyan" />
+                <GradientStop Offset="0.45" Color="LightCyan" />
+                <GradientStop Offset="0.5" Color="Cyan" />
+            </LinearGradientBrush>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

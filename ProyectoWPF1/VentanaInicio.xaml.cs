@@ -53,5 +53,11 @@ namespace ProyectoWPF1
             Window v = new VentanaEstilos();
             v.Show();
         }
+
+        private void button6_Click(object sender, RoutedEventArgs e)
+        {
+            Window v = new VentanaPlantillas();
+            v.Show();
+        }
     }
 }

@@ -80,6 +80,14 @@ namespace ProyectoWPF1 {
         #line default
         #line hidden
         
+        
+        #line 11 "..\..\..\VentanaInicio.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button button6;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -149,6 +157,15 @@ namespace ProyectoWPF1 {
             
             #line 10 "..\..\..\VentanaInicio.xaml"
             this.button5.Click += new System.Windows.RoutedEventHandler(this.button5_Click);
+            
+            #line default
+            #line hidden
+            return;
+            case 6:
+            this.button6 = ((System.Windows.Controls.Button)(target));
+            
+            #line 11 "..\..\..\VentanaInicio.xaml"
+            this.button6.Click += new System.Windows.RoutedEventHandler(this.button6_Click);
             
             #line default
             #line hidden

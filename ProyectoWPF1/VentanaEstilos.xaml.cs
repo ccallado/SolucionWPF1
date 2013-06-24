@@ -55,5 +55,10 @@ namespace ProyectoWPF1
         {
             MessageBox.Show("Click en botón " + ((Button)sender).Content);
         }
+
+        private void button11_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

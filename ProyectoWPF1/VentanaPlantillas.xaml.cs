@@ -22,5 +22,14 @@ namespace ProyectoWPF1
         {
             InitializeComponent();
         }
+
+        private void Mensaje(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+
+            MessageBox.Show("Content: " + b.Content,
+                            b.CommandParameter.ToString());
+
+        }
     }
 }

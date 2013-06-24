@@ -68,6 +68,9 @@
     <Compile Include="VentanaHeadered_ItemsControls.xaml.cs">
       <DependentUpon>VentanaHeadered_ItemsControls.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanaPlantillas.xaml.cs">
+      <DependentUpon>VentanaPlantillas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanaRecursos.xaml.cs">
       <DependentUpon>VentanaRecursos.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VentanaHeadered_ItemsControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanaPlantillas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

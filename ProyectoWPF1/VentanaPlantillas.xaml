@@ -2,7 +2,44 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="VentanaPlantillas" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <!-- Contenedor simple -->
+        <Button Name="boton1" Content="Botón con plantilla" Height="23" Width="150" Margin="5" Click="Mensaje" CommandParameter="Botón 1">
+            <Button.Template>
+                <ControlTemplate>
+                    <Ellipse Fill="Cyan" Stroke="DarkOrange" StrokeThickness="2"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <!-- Contenedor compuesto -->
+        <Button Name="boton2" Content="Botón2 con plantilla" Height="23" Width="150" Margin="5" Click="Mensaje" CommandParameter="Botón 2">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border BorderThickness="2" BorderBrush="Brown" >
+                        <Grid Background="Coral" >
+                            <Ellipse Fill="Yellow" Stroke="DarkOrange" StrokeThickness="2"/>
+                            <TextBlock Text="Botón2 con plantilla" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <!-- Plantilla a nivel de recurso -->
+        <Button Name="boton3" Content="Botón3 con plantilla" Height="23" Width="150" Margin="5" Click="Mensaje" CommandParameter="Botón 3">
+            <Button.Template>
+                <ControlTemplate TargetType="Button" > <!-- TargetType="{x:Type Button}" -->
+                    <Border BorderThickness="2" BorderBrush="Brown" >
+                        <Grid Background="Coral" >
+                            <Ellipse Fill="WhiteSmoke"  Stroke="DarkOrange" StrokeThickness="2"/>
+                            <!-- El ContentPresenter es la etiqueta que sustituirá al content del control -->
+                            <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+    </StackPanel>
 </Window>

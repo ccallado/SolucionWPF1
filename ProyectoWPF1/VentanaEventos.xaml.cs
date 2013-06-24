@@ -22,5 +22,20 @@ namespace ProyectoWPF1
         {
             InitializeComponent();
         }
+
+        private void ClickCalculadora(object sender, RoutedEventArgs e)
+        {
+            Button b = e.Source as Button;
+            if (b != null)
+            {
+                if (b.Content.ToString() != "C")
+                    CajaCalculadora.Text += b.Content.ToString();
+                else
+                    CajaCalculadora.Text = "";
+            }
+            string cad = "Sender: " + sender.ToString();
+            cad += "\nSource: " + b;
+            MessageBox.Show(cad);
+        }
     }
 }

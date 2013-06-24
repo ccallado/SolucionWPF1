@@ -18,5 +18,35 @@
         <Setter Property="Background" Value="Orange" />
         //Comentarlo <EventSetter Event="Button.Click" Handler="btnEstilos_Click" />
     </Style> -->
+    <!--Plantilla de botón-->
+    <ControlTemplate TargetType="Button" x:Key="Plantilla3Recurso">
+        <Border Name="borde" BorderThickness="2" BorderBrush="Blue"  >
+            <Grid Background="LightGreen"  >
+                <Ellipse Name="elipse" Fill="LightCoral"  Stroke="DarkOrange" StrokeThickness="2"/>
+                <!-- El ContentPresenter es la etiqueta que sustituirá al content del control -->
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard Name="sbBotonPulsado">
+                        <Storyboard>
+                            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                    By="1,1,0,0" Duration="0:0:.01" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <StopStoryboard BeginStoryboardName="sbBotonPulsado" />
+                </Trigger.ExitActions>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- La plantilla ha de estar creada antes de usarla en un estilo que es lo que voy a definir.-->
+    <Style TargetType="Button" x:Key="EstiloPlantilla" >
+        <Setter Property="Template" Value="{StaticResource Plantilla3Recurso}"/>
+    </Style>
 
 </ResourceDictionary>

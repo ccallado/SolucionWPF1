@@ -1,0 +1,31 @@
+﻿<Window x:Class="ProyectoWPF1.VentanaComandos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="VentanaComandos" Height="300" Width="300">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Stop" Executed="CerrarFormulario"/>
+    </Window.CommandBindings>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Height="22">
+            <MenuItem Header="_Archivo">
+                <MenuItem Header="_Nuevo" />
+                <MenuItem Header="_Abrir" />
+                <MenuItem Header="_Cerrar" />
+                <Separator />
+                <MenuItem Header="_Salir" Command="ApplicationCommands.Stop" />
+            </MenuItem>
+            <MenuItem Header="_Editar">
+                <MenuItem Header="_Copiar" Command="ApplicationCommands.Copy" />
+                <MenuItem Header="Co_rtar" Command="ApplicationCommands.Cut" />
+                <MenuItem Header="_Pegar" Command="ApplicationCommands.Paste" />
+            </MenuItem>
+        </Menu>
+        <ToolBar DockPanel.Dock="Top" Height="22">
+            
+        </ToolBar>
+        <Grid>
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="10,43,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
+        </Grid>
+    </DockPanel>
+</Window>

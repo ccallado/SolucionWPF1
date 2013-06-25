@@ -65,5 +65,11 @@ namespace ProyectoWPF1
             Window v = new VentanaEventos();
             v.Show();
         }
+
+        private void button8_Click(object sender, RoutedEventArgs e)
+        {
+            Window v = new VentanaComandos();
+            v.Show();
+        }
     }
 }

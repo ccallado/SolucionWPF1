@@ -1,7 +1,7 @@
 ﻿<Window x:Class="ProyectoWPF1.VentanaInicio"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="VentanaInicio" Height="300" Width="300">
+        Title="VentanaInicio" Height="376" Width="300">
     <Grid>
         <Button Content="MainWindow" Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="button1" VerticalAlignment="Top" Width="136" ToolTip="Ventana original. Controles simples." Click="button1_Click" />
         <Button Content="Contenedores" Height="23" HorizontalAlignment="Left" Margin="10,39,0,0" Name="button2" ToolTip="Ventana para provar los contenedores." VerticalAlignment="Top" Width="136" Click="button2_Click" />
@@ -11,5 +11,6 @@
         <Button Content="Plantillas" Height="23" HorizontalAlignment="Left" Margin="12,155,0,0" Name="button6" ToolTip="Ventana para provar los contenedores." VerticalAlignment="Top" Width="136" Click="button6_Click" />
         <Button Content="Eventos" Height="23" HorizontalAlignment="Left" Margin="12,184,0,0" Name="button7" ToolTip="Ventana para provar los contenedores." VerticalAlignment="Top" Width="136" Click="button7_Click" />
         <Button Content="Comandos" Height="23" HorizontalAlignment="Left" Margin="12,213,0,0" Name="button8" ToolTip="Ventana para provar los contenedores." VerticalAlignment="Top" Width="136" Click="button8_Click" />
+        <Button Content="Asincronos" Height="23" HorizontalAlignment="Left" Margin="12,242,0,0" Name="button9" ToolTip="Ventana para provar los contenedores." VerticalAlignment="Top" Width="136" Click="button9_Click" />
     </Grid>
 </Window>

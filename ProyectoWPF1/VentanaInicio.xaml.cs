@@ -71,5 +71,11 @@ namespace ProyectoWPF1
             Window v = new VentanaComandos();
             v.Show();
         }
+
+        private void button9_Click(object sender, RoutedEventArgs e)
+        {
+            Window v = new VentanaAsincrono();
+            v.Show();
+        }
     }
 }

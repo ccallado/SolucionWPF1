@@ -1,18 +1,46 @@
 ﻿<Window x:Class="ProyectoWPF1.VentanaComandos"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="VentanaComandos" Height="300" Width="300">
+        Title="VentanaComandos" Height="300" Width="407" PreviewKeyDown="Window_PreviewKeyDown">
+    <!-- Asignamos la AplicationCommand.Stop que ejecute CerrarFormulario
+         Vamos a asignar una pulsación de teclas concreta al comando
+         Primero cambiamos en el menú cual es la opción de teclas, "Pero no hace nada"
+         Con InputGesture a nivel de ventana indicamos que opción de teclas va enlazado
+         con el comando.
+         -->
     <Window.CommandBindings>
-        <CommandBinding Command="ApplicationCommands.Stop" Executed="CerrarFormulario"/>
+        <CommandBinding Command="Stop" 
+                        Executed="CerrarFormulario"
+                        CanExecute="PuedeCerrarFormulario"/>
+        <CommandBinding Command="Open"
+                        Executed="AbrirArchivo"
+                        CanExecute="PuedeAbrirArchivo"/>
     </Window.CommandBindings>
+    <!-- Hay dos tipos de binding
+         KeyBinding.-   combinaciones de teclas con el comando
+         MouseBinding.- Gestos del ratón con el comando.-->
+    <Window.InputBindings>
+        <!-- Binding con el Teclado -->
+        <KeyBinding Command="Stop" Gesture="Ctrl+Shift+X" />
+        <KeyBinding Command="Open" Gesture="Ctrl+O" 
+                    CommandTarget="{Binding ElementName=textBox1}"
+                    CommandParameter="{Binding ElementName=textBox1, Path=Text}"/>
+        <!-- Binding con el Ratón -->
+        <MouseBinding Command="Stop" Gesture="Alt+MiddleDoubleClick" />
+    </Window.InputBindings>
     <DockPanel>
         <Menu DockPanel.Dock="Top" Height="22">
             <MenuItem Header="_Archivo">
                 <MenuItem Header="_Nuevo" />
-                <MenuItem Header="_Abrir" />
+                <!-- Con CommandTarget expecificamos que control queremos usar como origen, 
+                    se expecifica como un Binding -->
+                <MenuItem Header="_Abrir" Command="Open" Name="mnuAbrir" 
+                          InputGestureText="Ctrl+O"
+                          CommandTarget="{Binding ElementName=textBox1}"
+                          CommandParameter="{Binding ElementName=textBox1, Path=Text}"/>
                 <MenuItem Header="_Cerrar" />
                 <Separator />
-                <MenuItem Header="_Salir" Command="ApplicationCommands.Stop" />
+                <MenuItem Header="_Salir" Command="ApplicationCommands.Stop" InputGestureText="Ctrl+Shift+X" />
             </MenuItem>
             <MenuItem Header="_Editar">
                 <MenuItem Header="_Copiar" Command="ApplicationCommands.Copy" />
@@ -20,12 +48,16 @@
                 <MenuItem Header="_Pegar" Command="ApplicationCommands.Paste" />
             </MenuItem>
         </Menu>
-        <ToolBar DockPanel.Dock="Top" Height="22">
-            
+        <ToolBar DockPanel.Dock="Top" Height="27">
+            <Button Content="Salir" Command="Stop" />
         </ToolBar>
         <Grid>
             <TextBox Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
             <TextBox Height="23" HorizontalAlignment="Left" Margin="10,43,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
+            <Button Content="Abrir" Height="23" HorizontalAlignment="Left" Margin="149,10,0,0" Name="button1" VerticalAlignment="Top" Width="75" 
+                    Command="Open" CommandTarget="{Binding ElementName=textBox1}" 
+                    CommandParameter="{Binding ElementName=textBox1, Path=Text}"/>
+            <Button Content="Forzar" Height="23" HorizontalAlignment="Left" Margin="230,10,0,0" Name="button2" VerticalAlignment="Top" Width="75" Click="button2_Click" />
         </Grid>
     </DockPanel>
 </Window>

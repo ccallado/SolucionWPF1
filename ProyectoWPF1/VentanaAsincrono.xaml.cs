@@ -99,6 +99,12 @@ namespace ProyectoWPF1
             button3.IsEnabled = !habilitar;
             button4.IsEnabled = habilitar;
             button5.IsEnabled = !habilitar;
+            if (!habilitar)
+            {
+                progressBar1.Value = 0;
+                listBox1.Items.Clear();
+                label2.Content = "";
+            }
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -247,7 +253,8 @@ namespace ProyectoWPF1
             {
                 Botones(false);
                 button3.IsEnabled = false;
-                progressBar1.Maximum = hasta;
+                //Controlo negativos para que la barra de progreso no salga all 100%
+                progressBar1.Maximum = (hasta < 0 ? 100 : hasta);
                 bgw.RunWorkerAsync(hasta);
             }
         }
@@ -259,9 +266,27 @@ namespace ProyectoWPF1
 
             if (hasta < 0)
                 throw new ArgumentOutOfRangeException("hasta", hasta, "No se permiten valores negativos");
+            if (hasta > 1000)
+                throw new OverflowException("Ande vas...");
 
             for (int i = 1; i <= hasta; i++)
             {
+                if (bgw.CancellationPending)
+                {
+                    //if (MessageBox.Show("¿Desea cancelar la búsqueda?",
+                    //    "Cancelación", MessageBoxButton.YesNo,
+                    //    MessageBoxImage.Question,
+                    //    MessageBoxResult.No) == MessageBoxResult.Yes)
+                    //{
+                    e.Cancel = true;
+                    return;
+                    //}
+                    //else 
+                    //{
+                    //    e.Cancel = false;
+                    //}
+                }
+
                 bool primo = EsPrimo(i);
                 if (primo)
                 {
@@ -287,14 +312,34 @@ namespace ProyectoWPF1
 
         void bgw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            if (e.Error != null)
-                MessageBox.Show(e.Error.Message, "Error");
+            if (e.Cancelled)
+            {
+                MessageBox.Show("Cancelado por el usuario",
+                                "Cancelado",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+ 
+            }
             else
-                MessageBox.Show("Primos entre 1 y " + textBox1.Text + ": " + e.Result, "Paralelo");
+            {
+                if (e.Error != null)
+                    MessageBox.Show(e.Error.Message,
+                                    //"Error",
+                                    e.Error.GetType().ToString(),
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Warning);
+                else
+                    MessageBox.Show("Primos entre 1 y " + textBox1.Text + ": " + e.Result, "Paralelo");
+            }
 
             Botones(true);
         }
 
         #endregion
+
+        private void button5_Click(object sender, RoutedEventArgs e)
+        {
+            bgw.CancelAsync();
+        }
     }
 }

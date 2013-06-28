@@ -29,7 +29,7 @@
                     <CheckBox Name="chkThreadPool" Content="Limitar hilos"/>
                 </StackPanel>
             </Button>
-            <Button Content="Cancelar" Height="23" HorizontalAlignment="Left" Margin="141,131,0,0" Name="button7" VerticalAlignment="Top" Width="55" />
+            <Button Content="Cancelar" Height="23" HorizontalAlignment="Left" Margin="141,131,0,0" Name="button7" VerticalAlignment="Top" Width="55" Click="button7_Click" />
         </Grid>
     </DockPanel>
 </Window>

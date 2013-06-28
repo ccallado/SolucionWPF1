@@ -231,6 +231,7 @@ namespace ProyectoWPF1
             if (progressBar1.Value == progressBar1.Maximum)
             {
                 label2.Content += " - Tardó " + DateTime.Now.Subtract(horaEntrada).TotalSeconds + " s.";
+                Botones(true);
             }
         }
 
@@ -391,9 +392,10 @@ namespace ProyectoWPF1
                     button5.IsEnabled = false;
                     //button7.IsEnabled = false;
                     progressBar1.Maximum = hasta;
+                    cancelarThreadPool = false;
                     System.Windows.Forms.Application.DoEvents();
                     BuscarPrimoThreadPool(hasta);
-                    Botones(true);
+                    //Botones(true);
                 }
             }
 
@@ -405,25 +407,34 @@ namespace ProyectoWPF1
             int i = (int)o;
             if (EsPrimo(i))
             {
-                contadorThreadPool++;
+                //contadorThreadPool++;
+                //No se puede tocar esta variable hasta que no termine el hilo
+                //Esto solo es para variables de tipo INT y LONG
+                System.Threading.Interlocked.Increment(ref contadorThreadPool);
                 this.Dispatcher.Invoke(delActualizaLBL, System.Windows.Threading.DispatcherPriority.Background,
                     new object[] { i, contadorThreadPool });
             }
             progressBar1.Dispatcher.Invoke(delActualizaPB,
                 System.Windows.Threading.DispatcherPriority.Background,
                 i);
-            //System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(100);
         }
 
         void BuscarPrimoThreadPool(int hasta)
         {
             //Control de tiempos
             horaEntrada = DateTime.Now;
+            if (cancelarThreadPool)
+                //Esto detiene el hilos que vayan a empezar a ejecutarse
+                return;
 
             contadorThreadPool = 0;
 
             for (int i = 1; i <= hasta; i++)
             {
+                if (cancelarThreadPool)
+                    //Esto detiene el for pero no para los hilos
+                    return;
                 System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(ComprobarPrimoThreadPool), i);
                 //Nuevo método que funciona.
                 //System.Threading.ThreadPool.QueueUserWorkItem(ComprobarPrimoThreadPool, i);
@@ -441,6 +452,14 @@ namespace ProyectoWPF1
                             "\nMáximo:\t" + maxHilos + "\t" + maxHilosIO +
                             "\nMínimo:\t" + minHilos + "\t" + minHilosIO,
             "ThreadPool " + (info != "" ? info : ""));
+        }
+
+        bool cancelarThreadPool = false;
+
+        private void button7_Click(object sender, RoutedEventArgs e)
+        {
+            cancelarThreadPool = true;
+            Botones(true);
         }
     }
 }

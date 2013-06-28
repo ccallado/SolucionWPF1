@@ -77,5 +77,11 @@ namespace ProyectoWPF1
             Window v = new VentanaAsincrono();
             v.Show();
         }
+
+        private void button10_Click(object sender, RoutedEventArgs e)
+        {
+            Window v = new VentanaLocalizable();
+            v.Show();
+        }
     }
 }

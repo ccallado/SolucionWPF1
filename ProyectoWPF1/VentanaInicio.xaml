@@ -12,5 +12,6 @@
         <Button Content="Eventos" Height="23" HorizontalAlignment="Left" Margin="12,184,0,0" Name="button7" ToolTip="Ventana para provar los contenedores." VerticalAlignment="Top" Width="136" Click="button7_Click" />
         <Button Content="Comandos" Height="23" HorizontalAlignment="Left" Margin="12,213,0,0" Name="button8" ToolTip="Ventana para provar los contenedores." VerticalAlignment="Top" Width="136" Click="button8_Click" />
         <Button Content="Asincronos" Height="23" HorizontalAlignment="Left" Margin="12,242,0,0" Name="button9" ToolTip="Ventana para provar los contenedores." VerticalAlignment="Top" Width="136" Click="button9_Click" />
+        <Button Content="Localización" Height="23" HorizontalAlignment="Left" Margin="12,271,0,0" Name="button10" ToolTip="Ventana para provar los contenedores." VerticalAlignment="Top" Width="136" Click="button10_Click" />
     </Grid>
 </Window>

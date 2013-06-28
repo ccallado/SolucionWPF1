@@ -35,6 +35,10 @@ namespace ProyectoWPF1
         //variable
         delegadaBotones delBotones;
 
+
+        //ThreadPool
+        DateTime horaEntrada;
+
         public VentanaAsincrono()
         {
             InitializeComponent();
@@ -65,6 +69,11 @@ namespace ProyectoWPF1
 
             label3.Content = DateTime.Now.ToLongTimeString();
             timerWpf.Start();
+
+            //instancio la delegada en la variable delActualizaPB
+            delActualizaPB = new delegadaActualizaPB(ActualizaPB);
+            delActualizaLBL = new delegadaActualizaLBL(ActualizaListaLabel);
+            delBotones = new delegadaBotones(Botones);
         }
 
         //Codigo de evento para el constructor del timer
@@ -99,6 +108,8 @@ namespace ProyectoWPF1
             button3.IsEnabled = !habilitar;
             button4.IsEnabled = habilitar;
             button5.IsEnabled = !habilitar;
+            button6.IsEnabled = habilitar;
+            button7.IsEnabled = !habilitar;
             if (!habilitar)
             {
                 progressBar1.Value = 0;
@@ -116,7 +127,9 @@ namespace ProyectoWPF1
                 Botones(false);
                 button3.IsEnabled = false;
                 button5.IsEnabled = false;
+                button7.IsEnabled = false;
                 progressBar1.Maximum = hasta;
+                //Actualiza el formulario para que se vean los cambios
                 System.Windows.Forms.Application.DoEvents();
                 BuscarPrimosSincrono(hasta);
                 Botones(true);
@@ -125,6 +138,9 @@ namespace ProyectoWPF1
 
         void BuscarPrimosSincrono(int hasta)
         {
+            //Control de tiempos
+            horaEntrada = DateTime.Now;
+
             int cont = 0;
 
             for (int i = 1; i <= hasta; i++)
@@ -138,8 +154,8 @@ namespace ProyectoWPF1
                 progressBar1.Value = i;
                 //System.Threading.Thread.Sleep(100);
                 System.Windows.Forms.Application.DoEvents();
-
             }
+            ActualizaPB((int)progressBar1.Maximum);
         }
 
         //Pulsado Botón PARALELO
@@ -156,6 +172,7 @@ namespace ProyectoWPF1
             {
                 Botones(false);
                 button5.IsEnabled = false;
+                button7.IsEnabled = false;
                 progressBar1.Maximum = hasta;
                 hiloPrimos.Start(hasta);
                 //BuscarPrimosParalelo(hasta);
@@ -171,10 +188,8 @@ namespace ProyectoWPF1
             //sino se pierde.
             try
             {
-                //instancio la delegada en la variable delActualizaPB
-                delActualizaPB = new delegadaActualizaPB(ActualizaPB);
-                delActualizaLBL = new delegadaActualizaLBL(ActualizaListaLabel);
-                delBotones = new delegadaBotones(Botones);
+                //Control de tiempos
+                horaEntrada = DateTime.Now;
 
                 int cont = 0;
                 int hasta = (int)ohasta;
@@ -193,7 +208,7 @@ namespace ProyectoWPF1
                     progressBar1.Dispatcher.Invoke(delActualizaPB,
                         System.Windows.Threading.DispatcherPriority.Background,
                         i);
-                    System.Threading.Thread.Sleep(100);
+                    //System.Threading.Thread.Sleep(100);
                 }
 
                 MessageBox.Show("Terminado", "Paralelo");
@@ -212,6 +227,11 @@ namespace ProyectoWPF1
         void ActualizaPB(int valor)
         {
             progressBar1.Value = valor;
+            //Si el progressbar llega al final muestro la diferencia en segundos.
+            if (progressBar1.Value == progressBar1.Maximum)
+            {
+                label2.Content += " - Tardó " + DateTime.Now.Subtract(horaEntrada).TotalSeconds + " s.";
+            }
         }
 
         void ActualizaListaLabel(int i, int cont)
@@ -253,6 +273,7 @@ namespace ProyectoWPF1
             {
                 Botones(false);
                 button3.IsEnabled = false;
+                button7.IsEnabled = false;
                 //Controlo negativos para que la barra de progreso no salga all 100%
                 progressBar1.Maximum = (hasta < 0 ? 100 : hasta);
                 bgw.RunWorkerAsync(hasta);
@@ -261,6 +282,9 @@ namespace ProyectoWPF1
 
         void bgw_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            //Control de tiempos
+            horaEntrada = DateTime.Now;
+
             int cont = 0;
             int hasta = (int)e.Argument;
 
@@ -293,7 +317,7 @@ namespace ProyectoWPF1
                     cont++;
                 }
                 bgw.ReportProgress(i, (primo ? (int?)cont : null));
-                System.Threading.Thread.Sleep(1);
+                //System.Threading.Thread.Sleep(1);
             }
             e.Result = cont;
         }
@@ -318,18 +342,19 @@ namespace ProyectoWPF1
                                 "Cancelado",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Information);
- 
+
             }
             else
             {
                 if (e.Error != null)
                     MessageBox.Show(e.Error.Message,
-                                    //"Error",
+                        //"Error",
                                     e.Error.GetType().ToString(),
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Warning);
                 else
-                    MessageBox.Show("Primos entre 1 y " + textBox1.Text + ": " + e.Result, "Paralelo");
+                    ActualizaPB((int)progressBar1.Maximum);
+                MessageBox.Show("Primos entre 1 y " + textBox1.Text + ": " + e.Result, "Paralelo");
             }
 
             Botones(true);
@@ -340,6 +365,82 @@ namespace ProyectoWPF1
         private void button5_Click(object sender, RoutedEventArgs e)
         {
             bgw.CancelAsync();
+        }
+
+        private void button6_Click(object sender, RoutedEventArgs e)
+        {
+            if (e.Source is Button)
+            {
+                if (chkThreadPool.IsChecked.Value)
+                {
+                    VerValoresThreadPool("Antes");
+                    //los valores CUIDADIN
+                    //Si no pongo valores o la variable = 0 eso es lo que pone
+                    //Y si te quedas sin hilos puede ir muy mal
+                    System.Threading.ThreadPool.SetMaxThreads(10, maxHilosIO);
+                    System.Threading.ThreadPool.SetMinThreads(10, minHilosIO);
+                    VerValoresThreadPool("Después");
+                }
+
+                int hasta;
+
+                if (int.TryParse(textBox1.Text, out hasta))
+                {
+                    Botones(false);
+                    button3.IsEnabled = false;
+                    button5.IsEnabled = false;
+                    //button7.IsEnabled = false;
+                    progressBar1.Maximum = hasta;
+                    System.Windows.Forms.Application.DoEvents();
+                    BuscarPrimoThreadPool(hasta);
+                    Botones(true);
+                }
+            }
+
+        }
+
+        int contadorThreadPool = 0;
+        public void ComprobarPrimoThreadPool(object o)
+        {
+            int i = (int)o;
+            if (EsPrimo(i))
+            {
+                contadorThreadPool++;
+                this.Dispatcher.Invoke(delActualizaLBL, System.Windows.Threading.DispatcherPriority.Background,
+                    new object[] { i, contadorThreadPool });
+            }
+            progressBar1.Dispatcher.Invoke(delActualizaPB,
+                System.Windows.Threading.DispatcherPriority.Background,
+                i);
+            //System.Threading.Thread.Sleep(100);
+        }
+
+        void BuscarPrimoThreadPool(int hasta)
+        {
+            //Control de tiempos
+            horaEntrada = DateTime.Now;
+
+            contadorThreadPool = 0;
+
+            for (int i = 1; i <= hasta; i++)
+            {
+                System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(ComprobarPrimoThreadPool), i);
+                //Nuevo método que funciona.
+                //System.Threading.ThreadPool.QueueUserWorkItem(ComprobarPrimoThreadPool, i);
+                System.Windows.Forms.Application.DoEvents();
+            }
+        }
+
+        int maxHilos, maxHilosIO, minHilos, minHilosIO;
+
+        void VerValoresThreadPool(string info)
+        {
+            System.Threading.ThreadPool.GetMaxThreads(out maxHilos, out maxHilosIO);
+            System.Threading.ThreadPool.GetMinThreads(out minHilos, out minHilosIO);
+            MessageBox.Show("\tHilos\tIO" +
+                            "\nMáximo:\t" + maxHilos + "\t" + maxHilosIO +
+                            "\nMínimo:\t" + minHilos + "\t" + minHilosIO,
+            "ThreadPool " + (info != "" ? info : ""));
         }
     }
 }

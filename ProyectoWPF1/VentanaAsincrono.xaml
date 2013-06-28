@@ -1,7 +1,7 @@
 ﻿<Window x:Class="ProyectoWPF1.VentanaAsincrono"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="VentanaAsincrono" Height="255" Width="491">
+        Title="VentanaAsincrono" Height="321" Width="491">
     <!-- Vamos a calcular números primos lo vamos a hacer en:
          Sincrono: El formulario queda bloqueado
          Paralelo:
@@ -30,6 +30,8 @@
                 </StackPanel>
             </Button>
             <Button Content="Cancelar" Height="23" HorizontalAlignment="Left" Margin="141,131,0,0" Name="button7" VerticalAlignment="Top" Width="55" Click="button7_Click" />
+            <Button Content="TPL" Height="23" HorizontalAlignment="Left" Margin="10,182,0,0" Name="button8" VerticalAlignment="Top" Width="125" Click="button8_Click" />
+            <Button Content="Cancelar" Height="23" HorizontalAlignment="Left" Margin="141,182,0,0" Name="button9" VerticalAlignment="Top" Width="55" Click="button7_Click" />
         </Grid>
     </DockPanel>
 </Window>

@@ -82,22 +82,31 @@ namespace ProyectoWPF1
             label3.Content = DateTime.Now.ToLongTimeString();
         }
 
+        ////Objeto de bloqueo no se usa
+        //object objetoBloqueo = new object(); //Para bloquear la sección crítica
         //Función para el cálculo de números primos
         bool EsPrimo(int x)
         {
-            if (x < 0)
-                throw new ArgumentOutOfRangeException("x", x, "No se puede calcular sobre valores negativos");
+            //Esto es absurdo porque no hay variables globales y se puede ejecutar en paralelo
+            //Esto obligaría a que este proceso no se podría ejecutar en paralelo.
+            //Pero es esta función la que hemos puesto en paralelo. Con lo que es absurdo.
+            //Solo como ejemplo de SECCIONES CRITICAS
+            //lock (objetoBloqueo)
+            //{
+                if (x < 0)
+                    throw new ArgumentOutOfRangeException("x", x, "No se puede calcular sobre valores negativos");
 
-            if (x <= 3)
+                if (x <= 3)
+                    return true;
+                else
+                {
+                    for (int i = 2; i < x; i++)
+                        if (x % i == 0)
+                            return false;
+                }
+
                 return true;
-            else
-            {
-                for (int i = 2; i < x; i++)
-                    if (x % i == 0)
-                        return false;
-            }
-
-            return true;
+            //}
         }
 
         //Función para habilitar y deshabilitar los botones
@@ -110,6 +119,8 @@ namespace ProyectoWPF1
             button5.IsEnabled = !habilitar;
             button6.IsEnabled = habilitar;
             button7.IsEnabled = !habilitar;
+            button8.IsEnabled = habilitar;
+            button9.IsEnabled = !habilitar;
             if (!habilitar)
             {
                 progressBar1.Value = 0;
@@ -128,6 +139,7 @@ namespace ProyectoWPF1
                 button3.IsEnabled = false;
                 button5.IsEnabled = false;
                 button7.IsEnabled = false;
+                button9.IsEnabled = false;
                 progressBar1.Maximum = hasta;
                 //Actualiza el formulario para que se vean los cambios
                 System.Windows.Forms.Application.DoEvents();
@@ -173,6 +185,7 @@ namespace ProyectoWPF1
                 Botones(false);
                 button5.IsEnabled = false;
                 button7.IsEnabled = false;
+                button9.IsEnabled = false;
                 progressBar1.Maximum = hasta;
                 hiloPrimos.Start(hasta);
                 //BuscarPrimosParalelo(hasta);
@@ -226,7 +239,8 @@ namespace ProyectoWPF1
 
         void ActualizaPB(int valor)
         {
-            progressBar1.Value = valor;
+//            progressBar1.Value = valor;
+            progressBar1.Value++;
             //Si el progressbar llega al final muestro la diferencia en segundos.
             if (progressBar1.Value == progressBar1.Maximum)
             {
@@ -275,6 +289,7 @@ namespace ProyectoWPF1
                 Botones(false);
                 button3.IsEnabled = false;
                 button7.IsEnabled = false;
+                button9.IsEnabled = false;
                 //Controlo negativos para que la barra de progreso no salga all 100%
                 progressBar1.Maximum = (hasta < 0 ? 100 : hasta);
                 bgw.RunWorkerAsync(hasta);
@@ -391,6 +406,7 @@ namespace ProyectoWPF1
                     button3.IsEnabled = false;
                     button5.IsEnabled = false;
                     //button7.IsEnabled = false;
+                    button9.IsEnabled = false;
                     progressBar1.Maximum = hasta;
                     cancelarThreadPool = false;
                     System.Windows.Forms.Application.DoEvents();
@@ -405,6 +421,10 @@ namespace ProyectoWPF1
         public void ComprobarPrimoThreadPool(object o)
         {
             int i = (int)o;
+            if (cancelarThreadPool)
+                //Esto detiene el hilos que vayan a empezar a ejecutarse
+                return;
+
             if (EsPrimo(i))
             {
                 //contadorThreadPool++;
@@ -417,17 +437,13 @@ namespace ProyectoWPF1
             progressBar1.Dispatcher.Invoke(delActualizaPB,
                 System.Windows.Threading.DispatcherPriority.Background,
                 i);
-            System.Threading.Thread.Sleep(100);
+            //System.Threading.Thread.Sleep(100);
         }
 
         void BuscarPrimoThreadPool(int hasta)
         {
             //Control de tiempos
             horaEntrada = DateTime.Now;
-            if (cancelarThreadPool)
-                //Esto detiene el hilos que vayan a empezar a ejecutarse
-                return;
-
             contadorThreadPool = 0;
 
             for (int i = 1; i <= hasta; i++)
@@ -461,5 +477,63 @@ namespace ProyectoWPF1
             cancelarThreadPool = true;
             Botones(true);
         }
+
+        private void button8_Click(object sender, RoutedEventArgs e)
+        {
+            int hasta;
+
+            if (int.TryParse(textBox1.Text, out hasta))
+            {
+                Botones(false);
+                button3.IsEnabled = false;
+                button5.IsEnabled = false;
+                button7.IsEnabled = false;
+                progressBar1.Maximum = hasta;
+                cancelarThreadPool = false;
+                System.Windows.Forms.Application.DoEvents();
+                BuscarPrimosTPL(hasta);
+                //Botones(true);
+            }
+        }
+
+        void BuscarPrimosTPL(int hasta)
+        {
+            //Control de tiempos
+            horaEntrada = DateTime.Now;
+            contadorThreadPool = 0;
+
+            //Voy a usar una Lambda como parametro de la funcion FOR
+            //(variable/s)=>{Código}
+            //La Lambda que vamos a crear queda
+            //(i) => { ComprobarPrimoTPL(i); }
+
+            System.Threading.Tasks.Parallel
+                .For(1, hasta + 1, (i, estado) => { ComprobarPrimoTPL(i, estado);});
+        }
+
+        public void ComprobarPrimoTPL(int i, System.Threading.Tasks.ParallelLoopState estado)
+        {
+            //int i = (int)o;
+            if (cancelarThreadPool)
+                //Esto detiene el hilos que vayan a empezar a ejecutarse
+                estado.Break();
+
+            if (EsPrimo(i))
+            {
+                //contadorThreadPool++;
+                //No se puede tocar esta variable hasta que no termine el hilo
+                //Esto solo es para variables de tipo INT y LONG
+                System.Threading.Interlocked.Increment(ref contadorThreadPool);
+                this.Dispatcher.Invoke(delActualizaLBL, System.Windows.Threading.DispatcherPriority.Background,
+                    new object[] { i, contadorThreadPool });
+            }
+            progressBar1.Dispatcher.Invoke(delActualizaPB,
+                System.Windows.Threading.DispatcherPriority.Background,
+                i);
+            //Actualiza el formulario para que se vean los cambios
+            System.Windows.Forms.Application.DoEvents();
+            //System.Threading.Thread.Sleep(100);
+        }
+
     }
 }

@@ -1,0 +1,8 @@
+C:\Users\Formacion\Desktop\LocBaml\CSharp\bin\Debug\LocBaml.exe
+C:\Users\Formacion\Desktop\LocBaml\CSharp\bin\Debug\LocBaml.pdb
+C:\Users\Formacion\Desktop\LocBaml\CSharp\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Formacion\Desktop\LocBaml\CSharp\obj\x86\Debug\StringTable.resources
+C:\Users\Formacion\Desktop\LocBaml\CSharp\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Formacion\Desktop\LocBaml\CSharp\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Formacion\Desktop\LocBaml\CSharp\obj\x86\Debug\LocBaml.exe
+C:\Users\Formacion\Desktop\LocBaml\CSharp\obj\x86\Debug\LocBaml.pdb

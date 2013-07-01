@@ -80,6 +80,44 @@ namespace ProyectoWPF1
 
         private void button10_Click(object sender, RoutedEventArgs e)
         {
+            //Antes de inicializar la ventana (antes del NEW)
+            System.Globalization.CultureInfo ci = null;
+
+            if (radioButton1.IsChecked.Value)
+                ci = new System.Globalization.CultureInfo("es-ES");
+            else
+                if (radioButton2.IsChecked.Value)
+                    ci = new System.Globalization.CultureInfo("es-AR");
+                else
+                    if (radioButton3.IsChecked.Value)
+                        ci = new System.Globalization.CultureInfo("es");
+                    else
+                        if (radioButton4.IsChecked.Value)
+                            ci = new System.Globalization.CultureInfo("en-US");
+                        else
+                            if (radioButton5.IsChecked.Value)
+                                ci = new System.Globalization.CultureInfo("en");
+                            else
+                                if (radioButton6.IsChecked.Value)
+                                    ci = new System.Globalization.CultureInfo("ar-AE");
+
+            string cad = "Antes\nCultura: " + System.Threading.Thread.CurrentThread.CurrentCulture +
+               "\nCulturaUI: " + System.Threading.Thread.CurrentThread.CurrentUICulture;
+            System.Threading.Thread.CurrentThread.CurrentUICulture =
+                System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            if (ci != null)
+            {
+                System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+                System.Threading.Thread.CurrentThread.CurrentCulture = ci;
+            }
+
+            cad += "\n\nDespués\nCultura: " + System.Threading.Thread.CurrentThread.CurrentCulture +
+               "\nCulturaUI: " + System.Threading.Thread.CurrentThread.CurrentUICulture;
+
+            MessageBox.Show(cad, "Cambio Cultura");
+            //System.Diagnostics.Debug.WriteLine(cad);
+
             Window v = new VentanaLocalizable();
             v.Show();
         }
